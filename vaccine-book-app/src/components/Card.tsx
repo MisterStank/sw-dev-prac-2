@@ -1,21 +1,19 @@
 import React from 'react'
 import styles from './card.module.css'
 import Image from 'next/image'
+import InteractiveCard from './InteractiveCard'
 
-function Card({hospitalName,description, imgSrc}:{hospitalName:string, description:string, imgSrc:string}) {
+function Card({ hospitalName, description, imgSrc }: { hospitalName: string, description: string, imgSrc: string }) {
   return (
-    <div className={styles.card}>
-      <div className={styles.cardimg}>
-        <Image src={imgSrc}
-          alt='hospital card'
-          fill={true}
-          objectFit='scale-down' />
+    <InteractiveCard>
+      <div className='w-full h-[70%] relative rounded-t-lg'> 
+          <Image src={imgSrc}
+            alt='hospital card'
+            fill={true}
+            className='object-cover rounded-t-lg' />
       </div>
-      <div>
-        <div className={styles.cardtexthead}>{hospitalName}</div>
-        <div className={styles.cardtext}>{description}</div>
-      </div>
-    </div>
+      <div className='w-full h-[30%] p-[20px] font-sans font-bold text-#333 text-lg'>{hospitalName}</div>
+    </InteractiveCard>
   )
 }
 
