@@ -19,8 +19,7 @@ function InteractiveCard({children} : {children : React.ReactNode}) {
         }
     }
     return (
-        <div className='w-1/5 h-[300px] rounded-lg shadow-lg '
-        onClick={()=>onCardSelected()}
+        <div className='w-full h-[300px] rounded-lg shadow-lg '
         onMouseOver={(e)=>onCardMouseAction(e)}
         onMouseOut={(e)=>onCardMouseAction(e)}>
             {children}
