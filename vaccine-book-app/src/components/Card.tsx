@@ -1,24 +1,17 @@
-
-import styles from './card.module.css'
+import React from 'react'
 import Image from 'next/image'
 import InteractiveCard from './InteractiveCard'
-import Rating from '@mui/material/Rating';
-import { useState } from 'react'
 
-function Card({ hospitalName, imgSrc, onCompare}: { hospitalName: string, imgSrc: string, onCompare:Function}) {
-  
+function Card({ hospitalName, imgSrc }: { hospitalName: string, imgSrc: string }) {
   return (
     <InteractiveCard>
-      <div className='w-full h-[70%] relative rounded-t-lg'
-        onClick={(e)=>{e.preventDefault(); onCompare(hospitalName)}}> 
+      <div className='w-full h-[70%] relative rounded-t-lg'> 
           <Image src={imgSrc}
             alt='hospital card'
             fill={true}
             className='object-cover rounded-t-lg' />
       </div>
-      <div className='w-full h-[30%] p-[20px] font-sans font-bold text-#333 text-md'>{hospitalName}
-      </div>
-      
+      <div className='w-full h-[30%] p-[20px] font-sans font-bold text-#333 text-lg'>{hospitalName}</div>
     </InteractiveCard>
   )
 }
