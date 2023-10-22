@@ -1,9 +1,26 @@
 import LocationDateReserve from "@/components/LocationDateReserve";
-import React from "react";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
+import getUserProfile from "@/libs/getUserProfile";
 
-function Booking() {
+async function Booking() {
+
+  const session = await getServerSession(authOptions)
+  if(!session || !session.user.token) return null
+
+  const profile = await getUserProfile(session.user.token)
+  var createdAt = new Date(profile.data.createdAt)
+
   return (
     <main className="w-[100%] flex flex-col items-center space-y-4">
+      <div className="text-2xl text-gray-600 mt-5 mb-5 font-bold">{profile.data.name}</div>
+      <table className="table-auto border-separate border-spacing-2 bg-slate-100 rounded-md text-gray-600">
+        <tbody>
+          <tr><td>Email</td><td>{profile.data.email}</td></tr>
+          <tr><td>Tel</td><td>{profile.data.tel}</td></tr>
+          <tr><td>Member Since</td><td>{createdAt.toString()}</td></tr>
+        </tbody>
+      </table>
       <div className="text-xl text-gray-600 mt-5 mb-5 font-bold">
         New Reservation
       </div>
