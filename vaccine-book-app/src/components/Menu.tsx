@@ -13,15 +13,30 @@ async function Menu() {
         <Image src={'/logo.png'} className="h-full w-auto" alt='logo' width={0} height={0} sizes="100vh" />
         <MenuItem title='Booking' pageRef='/booking' />
         {
-          session? <Link href="/api/auth/signout">
-          <div className='flex items-center absolute left-5 h-full px-2
-          text-cyan-600 hover:bg-slate-300'>Sign-Out of {session.user?.name}</div> 
-          </Link>
-          :<Link href="/api/auth/signin">
-          <div className='flex items-center absolute left-5 h-full px-2
-          text-cyan-600 hover:bg-slate-300'>Sign-In</div> 
-          </Link>
+          session? 
+          <div>
+            <Link href="/api/auth/signout">
+            <div className='flex items-center absolute left-5 h-full px-2
+            text-cyan-600 hover:bg-slate-300'>Sign-Out of {session.user?.name}</div> 
+            </Link>
+            <div className='flex items-center absolute left-44 h-full px-2'>
+              <MenuItem title='My Booking' pageRef='/mybooking' />
+            </div> 
+          </div>
+          :
+          <div>
+            <Link href="/api/auth/signin">
+            <div className='flex items-center absolute left-5 h-full px-2
+            text-cyan-600 hover:bg-slate-300'>Sign-In
+            </div> 
+            </Link>
+            <div className='flex items-center absolute left-20 h-full px-2'>
+              <MenuItem title='My Booking' pageRef='/mybooking' />
+            </div> 
+          </div>
+          
         }
+        
     </div>
   )
 }
