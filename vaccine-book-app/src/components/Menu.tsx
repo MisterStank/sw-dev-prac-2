@@ -19,7 +19,7 @@ async function Menu() {
             <div className='flex items-center absolute left-5 h-full px-2
             text-cyan-600 hover:bg-slate-300'>Sign-Out of {session.user?.name}</div> 
             </Link>
-            <div className='flex items-center absolute left-44 h-full px-2'>
+            <div className='flex items-center absolute left-52 h-full px-2'>
               <MenuItem title='My Booking' pageRef='/mybooking' />
             </div> 
           </div>
