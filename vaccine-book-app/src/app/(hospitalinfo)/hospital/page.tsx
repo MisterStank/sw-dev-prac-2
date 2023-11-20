@@ -8,17 +8,20 @@ import getUserProfile from "@/libs/getUserProfile"
 import AddHospitalForm from "@/components/AddHospitalForm"
 
 export default async function Hospital() {
-  const hospitals = getHospitals()
-  const session = await getServerSession(authOptions)
-  if(!session || !session.user.token) return null
-  const profile = await getUserProfile(session.user.token)
+	const hospitals = getHospitals();
+	const session = await getServerSession(authOptions);
+	const profile = session ? await getUserProfile(session.user.token) : null;
+
   return (
     <main className="text-center p-5">
-      <Suspense fallback={<p>Loading...<LinearProgress/></p>}>
-      <h1 className="text-xl font-medium">Select hospital</h1>
-        <HospitalCatalog hospitalJson={hospitals}/>
-        {profile.data.role=="admin" && <AddHospitalForm />}
-      </Suspense>
+			<Suspense fallback={<p>Loading...<LinearProgress/></p>} >
+				<HospitalCatalog hospitalJson={hospitals}/>
+				{
+					(profile?.data.role == "admin")?
+					<AddHospitalForm/>
+					:null
+				}
+			</Suspense>
     </main>
   )
 }
